@@ -16,30 +16,36 @@ function checkNumberAndSendEmails() {
   var foialinkColumnIndex = headers.indexOf('link_to_foia_letter'); // Replace 'Additional Info' with the actual column header for the link to the FOIA letter    
   var notesColumnIndex = headers.indexOf('notes'); // Replace 'Additional Info' with the actual column header for the notes column    
   var nameColumnIndex = headers.indexOf('contact_name'); // Replace 'Additional Info' with the actual column header for the FOIA contact name    
-  var emailColumnIndex = headers.indexOf('contact_email'); // Replace 'Additional Info' with the actual column header for the FOIA contact email    
+  var contactemailColumnIndex = headers.indexOf('contact_email'); // Replace 'Additional Info' with the actual column header for the FOIA contact email    
   var phoneColumnIndex = headers.indexOf('contact_phone'); // Replace 'Additional Info' with the actual column header for the FOIA contact phone
   var idColumnIndex = headers.indexOf('ID'); // Replace 'ID' with the actual column header for the request ID
+  var spreadsheetColumnIndex = headers.indexOf('spreadsheet_link'); // Replace 'spreadsheet_link' with the actual link to your spreadsheet
     
   for (var i = 1; i < data.length; i++) {
     var row = data[i];
     var number = row[daysoverdueColumnIndex];
-    var email = row[emailColumnIndex];
+    var recipient = row[emailColumnIndex];
 
     if (number >= 10) {
-      var subject = `re: request overdue: ${agency_name}, ${short_description}, ${days_overdue} days overdue`; // Customize the subject line here
-      var message = `A request is overdue by more than 10 days:
-        uniqueID: ${ID}
-        Project_name: ${Project_name}
-        Agency name: ${agency_name}
-        State: ${state}
-        Due date: ${due_date}
-        Days overdue: ${days_overdue}
-        Link to foia: ${link_to_foia_letter}
-        Notes: ${notes}
-        Contact name: ${contact_name}
-        Contact email: ${contact_email}
-        Contact phone: ${contact_phone}`; // Customize the email body here
-      sendEmail(email, subject, message);
+      var subject = `re: notiFOIA: request overdue by ${row[daysoverdueColumnIndex]} days. ${row[agencynameColumnIndex]}, ${row[shortdescriptionColumnIndex]}`; // Customize the subject line here
+      var message = 
+        `A request is overdue by more than 10 days:
+        uniqueID: ${row[idColumnIndex]}
+        Project_name: ${row[projectnameColumnIndex]}
+        Agency name: ${row[agencynameColumnIndex]}
+        State: ${row[stateColumnIndex]}
+        Due date: ${row[duedateColumnIndex]}
+        Days overdue: ${row[daysoverdueColumnIndex]}
+        Link to foia: ${row[foialinkColumnIndex]}
+        Notes: ${row[notesColumnIndex]}
+        Contact name: ${row[nameColumnIndex]}
+        Contact email: ${row[contactemailColumnIndex]}
+        Contact phone: ${row[phoneColumnIndex]}
+
+       If this is in error please update your spreadsheet (located ${row[spreadsheetColumnIndex]} here) to prevent future notifications.
+
+       NotiFOIA, a FOIA notification tool, was created by Kate Martin. You can reach her on twitter https://twitter.com/katereports or at katie.martin.13@gmail.com`; // Customize the email body here
+       sendEmail(recipient, subject, message);
     }
   }
 }
