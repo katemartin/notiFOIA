@@ -26,7 +26,9 @@ function checkNumberAndSendEmails() {
     var number = row[columns.days_overdue];
     var recipient = row[columns.email];
 
-    if (number >= 10) {
+// Number of days grace period set to zero. You can add more if you want an email x days after the request is due.
+// This is also the text of the email sent to you.
+    if (number >= 0) {
       var subject = `re: notiFOIA: request overdue by ${number} days. ${row[columns.agency_name]}, ${row[columns.short_description]}`; // Customize the subject line here
       var message = `A request is overdue by more than 10 days:
         uniqueID: ${row[columns.ID]}
@@ -40,10 +42,10 @@ function checkNumberAndSendEmails() {
         Contact name: ${row[columns.contact_name]}
         Contact email: ${row[columns.contact_email]}
         Contact phone: ${row[columns.contact_phone]}
-
-        If this is in error, please update your spreadsheet to prevent future notifications.
-
-        NotiFOIA, a FOIA notification tool, was created by Kate Martin. You can reach her on socials under the handle katereports, or at katie.martin.13@gmail.com`; // Customize the email body here
+        
+        If this is in error, please update your spreadsheet to prevent future notifications.16
+        
+        NotiFOIA, a FOIA notification tool, was created by Kate Martin. You can reach her on socials under the handle katereports on most social media, or at katie.martin.13@gmail.com`; // Customize the email body here
 
       sendEmail(recipient, subject, message);
     }
