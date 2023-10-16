@@ -1,2 +1,8 @@
 # notiFOIA
 A notification system in google sheets using app script
+
+Look for notiFOIA on google sheets here bit.ly/notiFOIA
+
+Instructions for activating the apps script is in "How to" column.
+
+If you want to receive a notiFOIA before the due date, add a negative number to "add days"
