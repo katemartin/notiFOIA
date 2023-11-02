@@ -27,10 +27,10 @@ function checkNumberAndSendEmails() {
     var recipient = row[columns.email];
 
 // Number of days grace period set to zero. You can add more if you want an email x days after the request is due.
-// This is also the text of the email sent to you.
-    if (number >= 0) {
+// The text of the email sent to you follows:
+    if (number >= 1) {
       var subject = `re: notiFOIA: request overdue by ${number} days. ${row[columns.agency_name]}, ${row[columns.short_description]}`; // Customize the subject line here
-      var message = `A request is overdue by more than 10 days:
+      var message = `A request is overdue:
         uniqueID: ${row[columns.ID]}
         Project_name: ${row[columns.Project_name]}
         Agency name: ${row[columns.agency_name]}
@@ -43,7 +43,7 @@ function checkNumberAndSendEmails() {
         Contact email: ${row[columns.contact_email]}
         Contact phone: ${row[columns.contact_phone]}
         
-        If this is in error, please update your spreadsheet to prevent future notifications.16
+        If this is in error, please update  the "records_received" column in your notiFOIA spreadsheet to prevent future notifications. To provide a grace period, type a number in the add_days column to extend the deadline.
         
         NotiFOIA, a FOIA notification tool, was created by Kate Martin. You can reach her on socials under the handle katereports on most social media, or at katie.martin.13@gmail.com`; // Customize the email body here
 
