@@ -13,11 +13,11 @@ function checkNumberAndSendEmails() {
     'short_description': headers.indexOf('short_description'),
     'Project_name': headers.indexOf('Project_name'),
     'due_date': headers.indexOf('due_date'),
-    'link_to_foia_letter': headers.indexOf('link_to_foia_letter'),
     'notes': headers.indexOf('notes'),
     'contact_name': headers.indexOf('contact_name'),
     'contact_email': headers.indexOf('contact_email'),
     'contact_phone': headers.indexOf('contact_phone'),
+    'agency_foia_number': headers.indexOf('agency_foia_number'),
     'ID': headers.indexOf('ID'),
   };
 
@@ -37,11 +37,11 @@ function checkNumberAndSendEmails() {
         State: ${row[columns.state]}
         Due date: ${row[columns.due_date]}
         Days overdue: ${number}
-        Link to foia: ${row[columns.link_to_foia_letter]}
         Notes: ${row[columns.notes]}
         Contact name: ${row[columns.contact_name]}
         Contact email: ${row[columns.contact_email]}
         Contact phone: ${row[columns.contact_phone]}
+        Agency FOIA number: ${row[columns.agency_foia_number]}
         
         If this is in error, please update  the "records_received" column in your notiFOIA spreadsheet to prevent future notifications. To provide a grace period, type a number in the add_days column to extend the deadline.
         
